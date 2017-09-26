@@ -2,7 +2,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">
-    <view class="info">
+    <view class="info" hidden="{{mask}}">
       <text>转换数字金额为中文大写金额</text>
     </view>
     <view class="num-input form-line" bindtap="bindShowMask">

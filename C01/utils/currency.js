@@ -1,6 +1,8 @@
+'use strict'
+
 export default class Currency {
   _cutLastFour(numberText) {
-    let len = numberText.length
+    const len = numberText.length
     if (len > 4) {
       return numberText.substr(0, len - 4)
     } else {
@@ -9,7 +11,7 @@ export default class Currency {
   }
 
   _getLastFour(numberText) {
-    let len = numberText.length
+    const len = numberText.length
     if (len > 4) {
       return numberText.substr(-4)
     } else {
@@ -18,11 +20,11 @@ export default class Currency {
   }
 
   toUpper(number) {
-    var intUnit = ['', '拾', '佰', '仟']
-    var decUnit = ['分', '角']
-    var sectionUnit = ['', '万', '亿']
+    const intUnit = ['', '拾', '佰', '仟']
+    const decUnit = ['分', '角']
+    const sectionUnit = ['', '万', '亿']
 
-    var charNumberDict = {
+    const charNumberDict = {
       '0': '零',
       '1': '壹',
       '2': '贰',
@@ -35,32 +37,33 @@ export default class Currency {
       '9': '玖'
     }
 
-    var result = []
-    var numArray = number.split('.')
+    let result = []
+    let numArray = number.split('.')
 
-    var intPart = numArray[0]
+    let intPart = numArray[0]
     if (intPart === '0') {
       intPart = ''
     }
+    let decPart = ''
     if (numArray.length === 1) {
-      var decPart = ''
+      decPart = ''
     } else {
       decPart = numArray[1]
     }
 
     let intPartLen = intPart.length
     if (intPartLen > 0) {
-      var sectionCount = 0
+      let sectionCount = 0
       if (intPartLen % 4 !== 0) {
         sectionCount = parseInt(intPartLen / 4) + 1
       } else {
         sectionCount = parseInt(intPartLen / 4)
       }
 
-      var sections = []
-      var tmp = intPart
+      let sections = []
+      let tmp = intPart
 
-      for (var i = 0; i < sectionCount; i++) {
+      for (let i = 0; i < sectionCount; i++) {
         let strSection = this._getLastFour(tmp)
         let strLen = strSection.length
         let oneSection = {
@@ -74,12 +77,12 @@ export default class Currency {
         tmp = this._cutLastFour(tmp)
       }
 
-      for (var j = 0; j < sections.length; j++) {
-        var restr = ''
-        var len = sections[j].strLen
+      for (let j = 0; j < sections.length; j++) {
+        let restr = ''
+        let len = sections[j].strLen
 
         for (let i = 0; i < sections[j]['strNumber'].length; i++) {
-          var c = sections[j]['strNumber'][i]
+          let c = sections[j]['strNumber'][i]
           if (c === '0') {
             sections[j]['hasZero'] = true
             len -= 1
@@ -108,15 +111,15 @@ export default class Currency {
       }
     }
 
-    var decSection = {
+    let decSection = {
       strNumber: decPart,
       strLen: decPart.length,
       isZero: true,
       hasZero: false
     }
 
-    restr = ''
-    len = 2
+    let restr = ''
+    let len = 2
 
     for (let i = 0; i < decPart.length; i++) {
       let c = decPart[i]
@@ -142,8 +145,8 @@ export default class Currency {
       result.push('整')
     }
 
-    var upperText = ''
-    for (var r in result) {
+    let upperText = ''
+    for (let r in result) {
       upperText += result[r]
     }
     return upperText

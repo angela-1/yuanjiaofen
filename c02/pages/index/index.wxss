@@ -1,54 +1,54 @@
 /**index.wxss**/
 
+/**index.wxss**/
+
 .container {
   background-color: #eee;
 }
 
-.header {
+.title {
   width: 100%;
   background-color: white;
   box-shadow: 4rpx 4rpx 4rpx #ccc;
   z-index: 10;
 }
 
-.info {
+.caption {
   text-align: center;
   font-size: 32rpx;
   padding: 40rpx 0;
   border-bottom: 2rpx solid #b2b2b2;
 }
 
-.num-input {
+.row {
   font-size: 38rpx;
   padding: 20rpx 40rpx;
+  height: 100rpx;
 }
 
-.num-input .input {
+.row .numstr {
   color: #888;
 }
 
-.num-input .cursor {
+.row .cursor {
   color: #685875;
 }
 
-.form-line {
-  height: 100rpx;
-}
 
 .hline {
   border-bottom: 2rpx solid #b2b2b2;
 }
 
-.new-result {
+.chnline {
   padding: 20rpx 0;
 }
 
-.new-result text {
+.chnline .chnstr {
   display: inline-block;
   margin: 0 40rpx;
 }
 
-.new-result image {
+.chnline .icon {
   margin: 0 40rpx;
   height: 40rpx;
   width: 40rpx;
@@ -78,7 +78,7 @@
   box-shadow: 4rpx 4rpx 4rpx #ccc;
 }
 
-.result-card .re-item {
+.result-card .result-item {
   margin: 10rpx;
   display: block;
 }
@@ -96,13 +96,15 @@
 .kbd {
   width: 100%;
   position: absolute;
-  bottom: 0;
-  z-index: 8;
+  bottom: 5rpx;
+  z-index: 6;
 }
 
-.kbd button {
-  /*height: 50px;*/
-  font-size: 38rpx;
+.kbd .btn {
+  font-size: 45rpx;
+  padding: 10rpx;
+  line-height: 2;
+  margin: 5rpx;
 }
 
 .footer {
