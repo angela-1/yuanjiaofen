@@ -1,4 +1,3 @@
-/**index.wxss**/
 
 /**index.wxss**/
 
@@ -66,7 +65,7 @@
 }
 
 .result-list {
-  min-height: 680rpx;
+  min-height: 680rpx; 
   margin-top: 40rpx;
   width: 100%;
 }

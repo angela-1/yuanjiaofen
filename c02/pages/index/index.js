@@ -66,14 +66,13 @@ Page({
   },
   bindInputNum: function (e) {
     clearTimeout(this.timeoutHandler)
-
     let lastChar = e.target.dataset.kw
     let oldStr = this.data.numStr
     let newStr = updateInput(lastChar, oldStr)
     this.setData({
       numStr: newStr
     })
-    if (newStr.length > oldStr.length) {
+    if (newStr.length > oldStr.length && newStr !== '.') {
       this._delayTransform(newStr)
     }     
   },
@@ -141,12 +140,8 @@ Page({
       duration: 500,
       timingFunction: 'ease'
     })
-    // animation.height(0).step()
-    console.log('fei')
     this.animation = animation
-
     animation.translateY(290).step()
-    
     this.setData({
       animation1: animation.export()
     })

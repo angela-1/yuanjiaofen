@@ -5,10 +5,14 @@ let limit_len = 12
 
 function updateInput(lastChar, oldStr) {
   let newStr = oldStr
-  const current_len = oldStr.length
+  let current_len = oldStr.length
   switch (lastChar) {
     case '.':
       if (allow_point) {
+        if (oldStr === '') {
+          oldStr = '0'
+          current_len += 1
+        }
         newStr = oldStr + lastChar
         allow_point = false
         limit_len = current_len + 3
@@ -21,6 +25,7 @@ function updateInput(lastChar, oldStr) {
     default:
       if (current_len < limit_len)
         newStr = oldStr + lastChar
+      break;
   }
   return newStr
 }
