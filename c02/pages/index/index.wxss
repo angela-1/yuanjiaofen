@@ -95,16 +95,15 @@
 
 .kbd {
   width: 100%;
-  position: absolute;
-  bottom: 5rpx;
+  position: fixed;
+  bottom: 5rpx;  
   z-index: 6;
 }
 
 .kbd .btn {
   font-size: 45rpx;
-  padding: 10rpx;
-  line-height: 2;
-  margin: 5rpx;
+  line-height: 2.2;
+  margin: 5rpx; 
 }
 
 .footer {

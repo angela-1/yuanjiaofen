@@ -12,7 +12,8 @@ Page({
     mask: false,
     resultList: [],
     imeoutHandler: 0,
-    animationData: {}
+    animationData: {},
+    animation1: {}
   },
   //事件处理函数
   bindAddToList() {
@@ -47,6 +48,8 @@ Page({
   },
   bindShowMask(e) {
     this._hideCaption()
+    this._animationKbd()
+
     this.setData({
       numStr: "",
       mask: true
@@ -84,6 +87,7 @@ Page({
     if (newStr.length > 0) {
       this._delayTransform(newStr)
     } else {
+      reset()
       this.setData({
         chnStr: ''
       })
@@ -127,45 +131,30 @@ Page({
       timingFunction: 'ease',
       delay: 0
     })
-    animation.translateY(-63).step()
+    animation.translateY(-64).step()
     this.setData({
       animationData: animation.export()
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  _animationKbd: function () {
+    let animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
     })
+    // animation.height(0).step()
+    console.log('fei')
+    this.animation = animation
+
+    animation.translateY(290).step()
+    
+    this.setData({
+      animation1: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animation1: animation.export()
+      })
+    }.bind(this), 50)
   }
 })
