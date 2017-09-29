@@ -51,10 +51,19 @@
   <!--scroll part-->
   <view class="result-list">
     <block wx:for="{{resultList}}" wx:for-item="re" wx:key="{{index+re}}">
-      <view class="result-card">
+      <!-- <view class="result-card">
         <text class="result-item num">{{re.num}}</text>
         <text class="result-item chn">{{re.chn}}</text>
-      </view>
+      </view> -->
+      
+       
+          <view class="result-card" style="{{re.txtStyle}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
+            <text class="result-item num">{{re.num}}</text>
+            <text class="result-item chn">{{re.chn}}</text>
+          </view>
+     
+
+
     </block>
   </view>
 
