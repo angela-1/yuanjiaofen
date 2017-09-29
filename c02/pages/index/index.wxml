@@ -60,6 +60,6 @@
 
   <!--test-->
   <view class="footer" hidden="{{mask}}">
-    <button bindtap="bindClearList" size="mini" type="warn">清空记录</button>
+    <text bindtap="bindClearList" class="text-button">清空记录</text>
   </view>
 </view>

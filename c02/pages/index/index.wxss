@@ -1,26 +1,24 @@
 
 /**index.wxss**/
 
-.container {
-  background-color: #eee;
-}
 
 .title {
   width: 100%;
   background-color: white;
   box-shadow: 4rpx 4rpx 4rpx #ccc;
   z-index: 10;
+  flex: 0 0 auto;
 }
 
 .caption {
   text-align: center;
-  font-size: 32rpx;
+  font-size: 34rpx;
   padding: 40rpx 0;
   border-bottom: 2rpx solid #b2b2b2;
 }
 
 .row {
-  font-size: 38rpx;
+  font-size: 40rpx;
   padding: 20rpx 40rpx;
   height: 100rpx;
 }
@@ -54,7 +52,7 @@
 }
 
 .mask {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
@@ -65,9 +63,10 @@
 }
 
 .result-list {
-  min-height: 680rpx; 
+  min-height: 660rpx; 
   margin-top: 40rpx;
   width: 100%;
+  flex: 1 1 auto;
 }
 
 .result-card {
@@ -83,13 +82,13 @@
 }
 
 .result-card .num {
-  font-size: 46rpx;
+  font-size: 40rpx;
   color: #353535;
 }
 
 .result-card .chn {
   color: #888;
-  font-size: 34rpx;
+  font-size: 36rpx;
 }
 
 .kbd {
@@ -100,11 +99,20 @@
 }
 
 .kbd .btn {
-  font-size: 45rpx;
+  font-size: 40rpx;
+  font-weight: bold;
   line-height: 2.2;
   margin: 5rpx; 
 }
 
 .footer {
-  margin-bottom: 20rpx;
+  margin: 22rpx 0 28rpx 0;
+}
+
+.text-button {
+  border: none;
+  color: #576b95;
+  background: transparent;
+  background-color: none;
+  font-size: 26rpx;
 }
