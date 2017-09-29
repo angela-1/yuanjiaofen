@@ -26,7 +26,7 @@ Page({
         chn: chnStr
       }
 
-      this.data.resultList.push(oneLine);
+      this.data.resultList.push(oneLine)
       this.setData({
         resultList: this.data.resultList
       });
@@ -211,7 +211,7 @@ Page({
       var delBtnWidth = that.data.delBtnWidth;
       //如果距离小于删除按钮的1/2，不显示删除按钮
      
-      var txtStyle = disX > 150 ? "left:-" + disX + "px" : "left:0px";
+      var txtStyle = disX > 150 ? "left:-" + disX + "px" : "--to-left: -" + disX+ "px;animation: tt 0.5s";
       console.log('disx', disX, txtStyle)
       // let txtStyle = ''
       console.log('me')
@@ -222,10 +222,13 @@ Page({
       if (disX > 150) {
         list.splice(index, 1)
       }
+      this.data.resultList = list
       //更新列表的状态
       that.setData({
         resultList: list
       });
+
+      console.log(this.data.resultList)
     }
   }
 })

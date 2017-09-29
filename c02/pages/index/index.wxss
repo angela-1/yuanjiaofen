@@ -72,7 +72,7 @@
 
 .result-card {
   position: relative;
-  /* width: 100%; */
+  /* animation: leftmove 0.5s;    */
   background-color: white;
   margin: 20rpx;
   padding: 10rpx 20rpx; 
@@ -120,4 +120,24 @@
   background: transparent;
   background-color: none;
   font-size: 26rpx;
+}
+
+
+@keyframes leftmove {
+  from {
+    top: -80px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes tt {
+  from {
+    left: var(--to-left);
+  }
+  to {
+    left: 0;
+    /* background-color: red; */
+  }
 }
