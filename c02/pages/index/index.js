@@ -211,24 +211,29 @@ Page({
       var delBtnWidth = that.data.delBtnWidth;
       //如果距离小于删除按钮的1/2，不显示删除按钮
      
-      var txtStyle = disX > 150 ? "left:-" + disX + "px" : "--to-left: -" + disX+ "px;animation: tt 0.5s";
-      console.log('disx', disX, txtStyle)
+      var txtStyle = disX > 150 ?
+        // "left:-" + disX + "px;" :
+        "--to-left: -" + disX + "px;animation: moveleft 0.5s" :
+        "--to-left: -" + disX+ "px;animation: moveright 0.5s";
+      console.log('disx', disX, txtStyle);
       // let txtStyle = ''
-      console.log('me')
+      console.log('me');
       //获取手指触摸的是哪一项
       var index = e.currentTarget.dataset.index;
       var list = that.data.resultList;
       list[index].txtStyle = txtStyle;
       if (disX > 150) {
-        list.splice(index, 1)
+        list.splice(index, 1);
       }
-      this.data.resultList = list
+      this.data.resultList = list;
       //更新列表的状态
       that.setData({
         resultList: list
       });
 
-      console.log(this.data.resultList)
+
+
+      console.log(this.data.resultList);
     }
   }
 })

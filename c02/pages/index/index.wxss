@@ -123,6 +123,26 @@
 }
 
 
+@keyframes moveright {
+  from {
+    transform: translateX(var(--to-left));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes moveleft {
+  from {
+    transform: translateX(var(--to-left));
+  }
+  to {
+    transform: translateX(-375px);
+  }
+}
+
+
 @keyframes leftmove {
   from {
     top: -80px;
