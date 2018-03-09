@@ -1,13 +1,11 @@
 
 /**index.wxss**/
 
-
-.title {
+.user {
   width: 100%;
   background-color: white;
   box-shadow: 4rpx 4rpx 4rpx #ccc;
-  z-index: 10;
-  flex: 0 0 auto;
+  z-index: 1;
 }
 
 .caption {
@@ -25,6 +23,8 @@
 
 .row .numstr {
   color: #888;
+  font-size: 40rpx;
+  font-family: "QuartzEF";
 }
 
 .row .cursor {
@@ -88,6 +88,7 @@
 
 .result-card .num {
   font-size: 40rpx;
+  font-family: "QuartzEF";
   color: #353535;
 }
 

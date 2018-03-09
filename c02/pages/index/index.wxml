@@ -13,7 +13,7 @@
     <view class="row chnline layout horizontal center" bindtap="bindAddToList">
       <text class="chnstr">{{chnStr}}</text>
       <view class="flex"></view>
-      <image class="icon" src="../assets/arrow-circle-right.png" wx:if="{{chnStr}}" mode="aspectFill"></image>
+      <image class="icon" src="../../assets/arrow-circle-right.png" wx:if="{{chnStr}}" mode="aspectFill"></image>
     </view>
   </view>
 

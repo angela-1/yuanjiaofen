@@ -1,0 +1,77 @@
+<!--pages/r2/r2.wxml-->
+
+
+<view class="container">
+  <!-- user -->
+  <view class="user" animation="{{animationTitle}}">
+    <view class="title">
+      <view class="caption">
+        <text>转换数字金额为中文大写金额</text>
+      </view>
+      <view class="user-number" bindtap="bindShowMask">
+        <text class="user-number-str">{{numStr}}</text>
+        <text class="cursor" hidden="{{!mask}}">|</text>
+      </view>
+      <view class="hline" hidden="{{!mask}}"></view>
+      <view class="user-chn layout horizontal center" bindtap="bindAddToList">
+        <text class="user-chn-str">{{chnStr}}</text>
+        <view class="flex"></view>
+        <image class="icon" src="../../assets/arrow-circle-right.png" wx:if="{{chnStr}}" mode="aspectFill"></image>
+      </view>
+    </view>
+
+  </view>
+  <!-- mask -->
+
+  <view class="mask" bindtap="bindCloseMask" hidden="{{!mask}}"></view>
+
+  <!-- keyboard -->
+  <view class="keyboard">
+    <view class="layout vertical" wx:if="{{mask}}" animation="{{animationKbd}}">
+      <view class="l1">
+        <button bindtap="bindClear" class="button-str">重置</button>
+      </view>
+      <view class="layout horizontal">
+        <button data-kw="1" bindtap="bindInputNum" class="flex button-number">1</button>
+        <button data-kw="2" bindtap="bindInputNum" class="flex button-number">2</button>
+        <button data-kw="3" bindtap="bindInputNum" class="flex button-number">3</button>
+      </view>
+      <view class="layout horizontal">
+        <button data-kw="4" bindtap="bindInputNum" class="flex button-number">4</button>
+        <button data-kw="5" bindtap="bindInputNum" class="flex button-number">5</button>
+        <button data-kw="6" bindtap="bindInputNum" class="flex button-number">6</button>
+      </view>
+      <view class="layout horizontal">
+        <button data-kw="7" bindtap="bindInputNum" class="flex button-number">7</button>
+        <button data-kw="8" bindtap="bindInputNum" class="flex button-number">8</button>
+        <button data-kw="9" bindtap="bindInputNum" class="flex button-number">9</button>
+      </view>
+      <view class="layout horizontal">
+        <button data-kw="." bindtap="bindInputNum" class="flex button-number">.</button>
+        <button data-kw="0" bindtap="bindInputNum" class="flex button-number">0</button>
+        <button data-kw="del" bindtap="bindBackspace" class="flex button-str">删除</button>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- results -->
+
+  <view class="result-board">
+    <view class="result-list">
+      <block wx:for="{{resultList}}" wx:for-item="re" wx:key="{{index+re}}">
+        <view class="result-card" style="{{re.txtStyle}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
+          <text class="result-item num">{{re.num}}</text>
+          <text class="result-item chn">{{re.chn}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- clear-button -->
+
+  <view class="clear" hidden="{{mask}}">
+    <text bindtap="bindClearList" class="text-button">清空记录</text>
+  </view>
+
+</view>
