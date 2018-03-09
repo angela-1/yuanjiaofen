@@ -9,7 +9,8 @@
         <text>转换数字金额为中文大写金额</text>
       </view>
       <view class="user-number" bindtap="bindShowMask">
-        <text class="user-number-str">{{numStr}}</text>
+        <text class="user-number-tip" wx:if="{{!mask}}">{{numStr}}</text>
+        <text class="user-number-str" wx:if="{{mask}}">{{numStr}}</text>
         <text class="cursor" hidden="{{!mask}}">|</text>
       </view>
       <view class="hline" hidden="{{!mask}}"></view>
@@ -27,7 +28,7 @@
 
   <!-- keyboard -->
   <view class="keyboard">
-    <view class="layout vertical" wx:if="{{mask}}" animation="{{animationKbd}}">
+    <view class="layout vertical" wx:if="{{kbd}}" animation="{{animationKbd}}">
       <view class="l1">
         <button bindtap="bindClear" class="button-str">重置</button>
       </view>
@@ -49,7 +50,7 @@
       <view class="layout horizontal">
         <button data-kw="." bindtap="bindInputNum" class="flex button-number">.</button>
         <button data-kw="0" bindtap="bindInputNum" class="flex button-number">0</button>
-        <button data-kw="del" bindtap="bindBackspace" class="flex button-str">删除</button>
+        <button data-kw="del" bindtap="bindBackspace" class="flex button-number">删除</button>
       </view>
     </view>
 

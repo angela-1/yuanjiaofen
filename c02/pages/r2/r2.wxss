@@ -16,10 +16,18 @@
 }
 
 .user-number {
-  font-size: 40rpx;
+  font-family: "QuartzEF";
   color: #888;
   padding: 40rpx 20rpx;
   z-index: 10;
+}
+
+.user-number-str {
+  font-size: 80rpx;
+}
+
+.user-number-tip {
+  font-size: 40rpx;
 }
 
 .hline {
@@ -51,19 +59,33 @@
 .keyboard {
   width: 100%;
   position: fixed;
-  bottom: 10rpx;
+  bottom: 0rpx;
   z-index: 10;
 }
 
 .button-number {
   border-radius: 0;
+  font-size: 60rpx;
+  /* padding: 10rpx 0; */
 }
 
 .button-number::after {
   border: solid 1px #353535;
   border-radius: 0;
+}
+
+.button-str {
+  border-radius: 0;
+  padding: 20rpx 0;
   
 }
+
+.button-str::after {
+  border: solid 1px #353535;
+  border-radius: 0;
+  
+}
+
 
 .result-board {
   min-height: 660rpx;
@@ -87,7 +109,7 @@
 }
 
 .result-card .num {
-  font-size: 40rpx;
+  font-size: 60rpx;
   font-family: "QuartzEF";
   color: #353535;
 }

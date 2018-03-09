@@ -10,6 +10,7 @@ Page({
    */
   data: {
     mask: false,
+    kbd: false,
     numStr: '点按输入金额',
     chnStr: '',
     resultList: [],
@@ -20,7 +21,7 @@ Page({
   },
   bindShowMask(e) {
     this._hideCaption()
-    this._animationKbd()
+    this._animationShowKbd()
 
     this.setData({
       numStr: "",
@@ -30,6 +31,7 @@ Page({
   bindCloseMask() {
     reset()
     this._showCaption()
+    this._animationHideKbd()
     this.setData({
       numStr: "点按输入金额",
       chnStr: "",
@@ -135,15 +137,16 @@ Page({
       animationTitle: animation.export()
     })
   },
-  _animationKbd: function () {
+  _animationShowKbd: function () {
     let animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease'
     })
-    this.animation = animation
+    // this.animation = animation
     animation.translateY(290).step()
     this.setData({
-      animationKbd: animation.export()
+      animationKbd: animation.export(),
+      kbd: true
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -151,6 +154,23 @@ Page({
         animationKbd: animation.export()
       })
     }.bind(this), 50)
+  },
+  _animationHideKbd: function () {
+    let animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    animation.translateY(360).step()
+    this.setData({
+      animationKbd: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationKbd: animation.export(),
+        kbd: false        
+      })
+    }.bind(this), 400)
   },
   _rmItem: function (index) {
     let list = this.data.resultList;
@@ -197,7 +217,7 @@ Page({
     }
   },
   touchE: function (e) {
-    const rmDist = 180
+    const rmDist = 150
     
     let that = this
     if (e.changedTouches.length == 1) {
