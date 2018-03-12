@@ -1,54 +1,65 @@
-
-/**index.wxss**/
+/* pages/r2/r2.wxss */
 
 .user {
   width: 100%;
   background-color: white;
   box-shadow: 4rpx 4rpx 4rpx #ccc;
-  z-index: 1;
+  z-index: 12;
 }
 
 .caption {
   text-align: center;
-  font-size: 34rpx;
+  font-size: 40rpx;
   padding: 40rpx 0;
+  color: #353535;
   border-bottom: 2rpx solid #b2b2b2;
 }
 
-.row {
-  font-size: 40rpx;
-  padding: 20rpx 40rpx;
-  height: 100rpx;
+.user-number {
+  color: #888888;
+  padding: 20rpx 20rpx;
+  z-index: 10;
 }
 
-.row .numstr {
-  color: #888;
-  font-size: 40rpx;
+.user-number-str {
+  font-size: 80rpx;
   font-family: "QuartzEF";
 }
 
-.row .cursor {
-  color: #685875;
+.user-number-tip {
+  font-size: 40rpx;
 }
 
+.cursor {
+  animation: twinkle 0.8s alternate infinite;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 .hline {
   border-bottom: 2rpx solid #b2b2b2;
 }
 
-.chnline {
-  padding: 20rpx 0;
+.user-chn {
+  font-size: 60rpx;
+  padding: 20rpx 20rpx;
+  min-height: 132rpx;
+  color: #353535;
 }
 
-.chnline .chnstr {
-  display: inline-block;
+.user-chn .icon {
+  min-width: 60rpx;
   margin: 0 40rpx;
-}
-
-.chnline .icon {
-  margin: 0 40rpx;
-  height: 40rpx;
-  width: 40rpx;
+  height: 60rpx;
+  width: 60rpx;
 }
 
 .mask {
@@ -57,29 +68,61 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  background-color: #888;
-  z-index: 2;
+  background-color: #888888;
+  z-index: 8;
   opacity: 0.5;
 }
 
-.result-list {
-  min-height: 660rpx; 
+.keyboard {
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  z-index: 10;
+}
+
+.button-number {
+  border-radius: 0;
+  font-size: 60rpx;
+  line-height: 2;
+}
+
+.button-number::after {
+  border: solid 1px #b2b2b2;
+  border-radius: 0;
+}
+
+.button-str::after {
+  border: solid 1px #b2b2b2;
+  border-radius: 0;
+}
+
+.button-str {
+  border-radius: 0;
+  font-size: 40rpx;
+  line-height: 2;
+}
+
+.button-str .icon {
+  padding-top: 30rpx;
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.result-board {
+  min-height: 660rpx;
   margin-top: 40rpx;
   width: 100%;
   flex: 1 1 auto;
 }
-
 
 .result-card {
   position: relative;
   /* animation: leftmove 0.5s;    */
   background-color: white;
   margin: 20rpx;
-  padding: 10rpx 20rpx; 
+  padding: 10rpx 20rpx;
   box-shadow: 4rpx 4rpx 4rpx #ccc;
 }
-
-
 
 .result-card .result-item {
   margin: 10rpx;
@@ -87,31 +130,17 @@
 }
 
 .result-card .num {
-  font-size: 40rpx;
+  font-size: 80rpx;
   font-family: "QuartzEF";
-  color: #353535;
+  color: #888888;
 }
 
 .result-card .chn {
-  color: #888;
-  font-size: 36rpx;
+  color: #353535;
+  font-size: 60rpx;
 }
 
-.kbd {
-  width: 100%;
-  position: fixed;
-  bottom: 5rpx;  
-  z-index: 6;
-}
-
-.kbd .btn {
-  font-size: 40rpx;
-  font-weight: bold;
-  line-height: 2.2;
-  margin: 5rpx; 
-}
-
-.footer {
+.clear {
   margin: 22rpx 0 28rpx 0;
 }
 
@@ -123,42 +152,22 @@
   font-size: 26rpx;
 }
 
-
 @keyframes moveright {
   from {
     transform: translateX(var(--to-left));
   }
+
   to {
     transform: translateX(0);
   }
 }
 
-
 @keyframes moveleft {
   from {
     transform: translateX(var(--to-left));
   }
+
   to {
     transform: translateX(-375px);
-  }
-}
-
-
-@keyframes leftmove {
-  from {
-    top: -80px;
-  }
-  to {
-    top: 0;
-  }
-}
-
-@keyframes tt {
-  from {
-    left: var(--to-left);
-  }
-  to {
-    left: 0;
-    /* background-color: red; */
   }
 }

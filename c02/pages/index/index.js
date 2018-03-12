@@ -1,57 +1,27 @@
-//index.js
-//获取应用实例
+// pages/r2/r2.js
+
 import Currency from '../../utils/currency.js'
 import { updateInput, reset } from '../../utils/util.js'
 
-const app = getApp()
-
-const rmDist = 150;
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
+    mask: false,
+    kbd: false,
     numStr: '点按输入金额',
     chnStr: '',
-    mask: false,
     resultList: [],
     timeoutHandler: 0,
-    animationData: {},
-    animation1: {},
+    animationTitle: {},
+    animationKbd: {},
     startX: {}
-  },
-  //事件处理函数
-  bindAddToList() {
-    let { numStr, chnStr } = this.data
-
-    if (numStr !== "" && chnStr !== "") {
-      let oneLine = {
-        num: numStr,
-        chn: chnStr
-      }
-
-      this.data.resultList.unshift(oneLine);
-      this.setData({
-        resultList: this.data.resultList
-      });
-      this.bindCloseMask()
-    }
-  },
-  bindClearList(e) {
-    this.setData({
-      numStr: "点按输入金额",
-      chnStr: "",
-      resultList: []
-    })
-  },
-  bindClear: function () {
-    reset()
-    this.setData({
-      numStr: "",
-      chnStr: ""
-    })
   },
   bindShowMask(e) {
     this._hideCaption()
-    this._animationKbd()
+    this._animationShowKbd()
 
     this.setData({
       numStr: "",
@@ -61,13 +31,28 @@ Page({
   bindCloseMask() {
     reset()
     this._showCaption()
+    this._animationHideKbd()
     this.setData({
       numStr: "点按输入金额",
       chnStr: "",
       mask: false
     })
   },
-  bindInputNum: function (e) {
+  bindClearList(e) {
+    this.setData({
+      numStr: "点按输入金额",
+      chnStr: "",
+      resultList: []
+    })
+  },
+  bindClear() {
+    reset()
+    this.setData({
+      numStr: "",
+      chnStr: ""
+    })
+  },
+  bindInputNum(e) {
     clearTimeout(this.data.timeoutHandler)
     let lastChar = e.target.dataset.kw
     let oldStr = this.data.numStr
@@ -75,9 +60,23 @@ Page({
     this.setData({
       numStr: newStr
     })
-    if (newStr.length > oldStr.length && newStr !== '.') {
+    if (newStr.length >= oldStr.length && newStr !== '.') {
       this._delayTransform(newStr)
-    }  
+    }
+  },
+  bindAddToList() {
+    let { numStr, chnStr } = this.data
+    if (numStr !== "" && chnStr !== "") {
+      let oneLine = {
+        num: numStr,
+        chn: chnStr
+      }
+      this.data.resultList.unshift(oneLine);
+      this.setData({
+        resultList: this.data.resultList
+      });
+      this.bindCloseMask()
+    }
   },
   bindBackspace: function () {
     clearTimeout(this.data.timeoutHandler)
@@ -116,7 +115,7 @@ Page({
       })
     }, 300)
   },
-  _showCaption: function () {
+  _showCaption() {
     let animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease',
@@ -124,36 +123,54 @@ Page({
     })
     animation.translateY(0).step()
     this.setData({
-      animationData: animation.export()
+      animationTitle: animation.export()
     })
   },
-  _hideCaption: function () {
+  _hideCaption() {
     let animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease',
       delay: 0
     })
-    animation.translateY(-64).step()
+    animation.translateY(-70).step()
     this.setData({
-      animationData: animation.export()
+      animationTitle: animation.export()
     })
   },
-  _animationKbd: function () {
+  _animationShowKbd: function () {
     let animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease'
     })
-    this.animation = animation
+    // this.animation = animation
     animation.translateY(290).step()
     this.setData({
-      animation1: animation.export()
+      animationKbd: animation.export(),
+      kbd: true
     })
     setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
-        animation1: animation.export()
+        animationKbd: animation.export()
       })
     }.bind(this), 50)
+  },
+  _animationHideKbd: function () {
+    let animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    animation.translateY(360).step()
+    this.setData({
+      animationKbd: animation.export()
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationKbd: animation.export(),
+        kbd: false        
+      })
+    }.bind(this), 400)
   },
   _rmItem: function (index) {
     let list = this.data.resultList;
@@ -182,8 +199,6 @@ Page({
       let moveX = e.touches[0].clientX;
       //计算手指起始点的X坐标与当前触摸点的X坐标的差值
       let disX = that.data.startX - moveX;
-      //delBtnWidth 为右侧按钮区域的宽度
-      let delBtnWidth = 100
       let txtStyle = "";
       if (disX == 0 || disX < 0) {//如果移动距离小于等于0，文本层位置不变
         txtStyle = "left:0px";
@@ -202,6 +217,8 @@ Page({
     }
   },
   touchE: function (e) {
+    const rmDist = 150
+    
     let that = this
     if (e.changedTouches.length == 1) {
       //手指移动结束后触摸点位置的X坐标
@@ -210,7 +227,7 @@ Page({
       let disX = that.data.startX - endX;
       let txtStyle = disX > rmDist ?
         "--to-left: -" + disX + "px;animation: moveleft 0.5s;animation-fill-mode: forwards;" :
-        "--to-left: -" + disX+ "px;animation: moveright 0.5s";
+        "--to-left: -" + disX + "px;animation: moveright 0.5s";
       //获取手指触摸的是哪一项
       let index = e.currentTarget.dataset.index;
       let list = that.data.resultList;
@@ -226,5 +243,61 @@ Page({
         }, 600);
       }
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })
