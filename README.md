@@ -4,7 +4,7 @@
 
 使用微信客户端6.5.7版本以上识别下方的小程序码。
 
-![qrcode](qrcode.jpg)
+![qrcode](https://raw.githubusercontent.com/angela-1/yuanjiaofen/master/qrcode.jpg)
 
 
 ## 视觉
@@ -17,7 +17,7 @@
 
 点击界面上 **点按即可输入金额** ，数字键盘会弹出，输入要转换的数字金额，在数字金额下方即出现转换后的中文大写金额。
 
-![ui1](ui1.png)
+![ui1](https://raw.githubusercontent.com/angela-1/yuanjiaofen/master/ui1.png)
 
 点击数字键盘上的 **删除** ，可以删除前一个数字。点击 **重置** ，可以删除已输入的全部数字。
 
@@ -25,7 +25,7 @@
 
 点击界面最下方的 **清空记录** ，可清除列表中已转换的数字金额。
 
-![ui2](ui2.png)
+![ui2](https://raw.githubusercontent.com/angela-1/yuanjiaofen/master/ui2.png)
 
 ## 反馈
 
