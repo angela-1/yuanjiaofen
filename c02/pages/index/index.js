@@ -1,7 +1,7 @@
 // pages/r2/r2.js
 
 import Currency from '../../utils/currency.js'
-import { updateInput, reset } from '../../utils/util.js'
+import { updateInput, updateInputBack, reset } from '../../utils/util.js'
 
 Page({
 
@@ -60,7 +60,9 @@ Page({
     this.setData({
       numStr: newStr
     })
-    if (newStr.length >= oldStr.length && newStr !== '.') {
+    if (newStr.length >= oldStr.length
+      && newStr !== ''
+      && newStr !== '0.') {
       this._delayTransform(newStr)
     }
   },
@@ -81,11 +83,14 @@ Page({
   bindBackspace: function () {
     clearTimeout(this.data.timeoutHandler)
     let oldStr = this.data.numStr
-    let newStr = oldStr.substring(0, oldStr.length - 1)
+    let lastChar = oldStr.substring(oldStr.length - 1)
+    let newStr = updateInputBack(lastChar, oldStr)
     this.setData({
       numStr: newStr
     })
-    if (newStr.length > 0) {
+    if (newStr.length > 0
+      && newStr !== ''
+      && newStr !== '0.') {
       this._delayTransform(newStr)
     } else {
       reset()
@@ -168,7 +173,7 @@ Page({
       animation.translateY(0).step()
       this.setData({
         animationKbd: animation.export(),
-        kbd: false        
+        kbd: false
       })
     }.bind(this), 400)
   },
@@ -218,7 +223,7 @@ Page({
   },
   touchE: function (e) {
     const rmDist = 150
-    
+
     let that = this
     if (e.changedTouches.length == 1) {
       //手指移动结束后触摸点位置的X坐标
