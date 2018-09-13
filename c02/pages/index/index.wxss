@@ -23,7 +23,6 @@
 
 .user-number-str {
   font-size: 80rpx;
-  font-family: "QuartzEF";
 }
 
 .user-number-tip {
@@ -109,7 +108,7 @@
 }
 
 .result-board {
-  min-height: 660rpx;
+  min-height: 860rpx;
   margin-top: 40rpx;
   width: 100%;
   flex: 1 1 auto;
@@ -131,7 +130,6 @@
 
 .result-card .num {
   font-size: 80rpx;
-  font-family: "QuartzEF";
   color: #888888;
 }
 
