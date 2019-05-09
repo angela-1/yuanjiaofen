@@ -7,5 +7,6 @@
     "navigationBarBackgroundColor": "#685875",
     "navigationBarTitleText": "圆角分Angela",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

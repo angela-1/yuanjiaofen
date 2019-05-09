@@ -108,7 +108,7 @@
 }
 
 .result-board {
-  min-height: 860rpx;
+  min-height: 920rpx;
   margin-top: 40rpx;
   width: 100%;
   flex: 1 1 auto;
